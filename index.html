@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report | 業務日報</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffffff">
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((registration) => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    }, (err) => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="background-globes">
+        <div class="globe globe-1"></div>
+        <div class="globe globe-2"></div>
+    </div>
+
+    <main class="container">
+        <div class="glass-card">
+            <header class="app-header">
+                <h1>Report</h1>
+                <p class="subtitle">業務内容を記録してください</p>
+            </header>
+
+            <section class="time-display">
+                <div id="current-time">--:--</div>
+                <div class="date-display" id="current-date">----/--/--</div>
+            </section>
+
+            <form id="report-form">
+                <div class="form-group date-group">
+                    <label for="report-date">報告日</label>
+                    <input type="date" id="report-date" name="report-date" required>
+                </div>
+
+                <div id="time-slots-container" class="time-slots-container">
+                    <!-- JavaScriptで時間枠リストを生成 -->
+                </div>
+
+                <button type="submit" id="submit-btn">
+                    <span class="btn-text">一括送信する</span>
+                    <div class="loader"></div>
+                </button>
+            </form>
+
+            <div id="status-message" class="status-message"></div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
